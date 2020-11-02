@@ -2,6 +2,7 @@ var http = require("http");
 var path= require("path");
 class WatchDeployPlugin {
   sendCmd(cmd, path) {
+    path = encodeURI(path)
     var req= http.get("http://127.0.0.1:9317/exec?cmd=" + cmd + "&path=" + path, (res) => {
       res.setEncoding('utf8');
       res.on('data', (data) => {
